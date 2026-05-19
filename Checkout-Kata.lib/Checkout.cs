@@ -6,7 +6,7 @@ namespace Checkout_Kata.lib
     public class Checkout : ICheckout
     {
         private List<ItemPrice> ItemPrices { get; }
-        private List<string> ScannedItems { get; set; } = new List<string>();
+        private Dictionary<ItemPrice, int> ScannedItems { get; set; }
 
         public Checkout(List<ItemPrice> itemPrices)
         {
@@ -19,8 +19,9 @@ namespace Checkout_Kata.lib
                 throw new PriceListIsEmptyException();
             }
             ItemPrices = itemPrices;
-            ScannedItems = new List<string>();
+            ScannedItems = new Dictionary<ItemPrice, int>();
         }
+
         public void Scan(string item)
         {
             if (string.IsNullOrWhiteSpace(item))
@@ -32,12 +33,27 @@ namespace Checkout_Kata.lib
                 throw new ItemNotFoundException(item);
             }
 
-            ScannedItems.Add(item);
+            var key = ItemPrices.First(i => i.SKU == item);
+
+            if (!ScannedItems.TryAdd(key, 1))
+            {
+                ScannedItems[key]++;
+            }
         }
 
         public int GetTotalPrice()
         {
-            return -1;
+            int price = 0;
+
+            foreach (var kvp in ScannedItems)
+            {
+                var itemPrice = kvp.Key;
+                var count = kvp.Value;
+
+                price += itemPrice.CalculatePrice(count);
+            }
+
+            return price;
         }
     }
 }
