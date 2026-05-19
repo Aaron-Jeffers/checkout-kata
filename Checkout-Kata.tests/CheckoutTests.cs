@@ -1,6 +1,6 @@
 using Checkout_Kata.lib;
 using Checkout_Kata.lib.Exceptions;
-using Xunit;
+
 namespace Checkout_Kata.tests
 {
     public class CheckoutTests
@@ -27,6 +27,13 @@ namespace Checkout_Kata.tests
             Checkout checkout = new Checkout(PriceConstants.ItemPrices);
 
             Assert.Throws<StringIsNullEmptyOrWhiteSpaceException>(() => checkout.Scan("  "));
+        }
+
+        [Fact]
+        public void ScanningAnItemThatDoesNotExistShouldThrowException()
+        {
+            Checkout checkout = new Checkout(PriceConstants.ItemPrices);
+            Assert.Throws<ItemNotFoundException>(() => checkout.Scan("E"));
         }
     }
 }
