@@ -7,12 +7,12 @@ namespace Checkout_Kata.tests.UnitTests
     public class ConstructorTests
     {
         [Fact]
-        public void ConstructingWithNullPriceListShouldThrowException()
+        public void Constructor_ThrowsNullArgumentException()
         {
             Assert.Throws<ArgumentNullException>(() => new Checkout(null));
         }
         [Fact]
-        public void ConstructingWithEmptyPriceListShouldThrowException()
+        public void Constructor_ThrowsPriceListIsEmptyException()
         {
             Assert.Throws<PriceListIsEmptyException>(() => new Checkout(new List<ItemPrice>()));
         }
