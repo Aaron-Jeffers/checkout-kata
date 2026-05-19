@@ -1,7 +1,5 @@
 ﻿using Checkout_Kata.lib;
-using Checkout_Kata.lib.Pricing;
 using Checkout_Kata.tests.Constants;
-using System.Linq;
 
 namespace Checkout_Kata.tests.UnitTests
 {
