@@ -37,7 +37,7 @@ namespace Checkout_Kata.lib
 
         public int GetTotalPrice()
         {
-            throw new NotImplementedException();
+            return -1;
         }
     }
 }
