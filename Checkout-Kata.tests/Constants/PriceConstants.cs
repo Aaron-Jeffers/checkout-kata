@@ -1,6 +1,6 @@
 ﻿using Checkout_Kata.lib.Pricing;
 
-namespace Checkout_Kata.tests
+namespace Checkout_Kata.tests.Constants
 {
     internal static class PriceConstants
     {

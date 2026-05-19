@@ -1,25 +1,11 @@
-using Checkout_Kata.lib;
+﻿using Checkout_Kata.lib;
 using Checkout_Kata.lib.Exceptions;
-using Checkout_Kata.lib.Pricing;
+using Checkout_Kata.tests.Constants;
 
-namespace Checkout_Kata.tests
+namespace Checkout_Kata.tests.UnitTests
 {
-    public class CheckoutTests
+    public class ScanTests
     {
-        #region ConstructorUnitTests
-        [Fact]
-        public void ConstructingWithNullPriceListShouldThrowException()
-        {
-            Assert.Throws<ArgumentNullException>(() => new Checkout(null));
-        }
-        [Fact]
-        public void ConstructingWithEmptyPriceListShouldThrowException()
-        {
-            Assert.Throws<PriceListIsEmptyException>(() => new Checkout(new List<ItemPrice>()));
-        }
-        #endregion
-
-        #region ScanUnitTests
         [Fact]
         public void ScanningAnNullStringShouldThrowException()
         {
@@ -50,6 +36,5 @@ namespace Checkout_Kata.tests
             Checkout checkout = new Checkout(PriceConstants.ItemPrices);
             Assert.Throws<ItemNotFoundException>(() => checkout.Scan("E"));
         }
-        #endregion
     }
 }
