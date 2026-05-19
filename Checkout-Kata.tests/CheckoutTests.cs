@@ -1,3 +1,6 @@
+using Checkout_Kata.lib;
+using Checkout_Kata.lib.Exceptions;
+using Xunit;
 namespace Checkout_Kata.tests
 {
     public class CheckoutTests
@@ -5,18 +8,25 @@ namespace Checkout_Kata.tests
         [Fact]
         public void ScanningAnNullStringShouldThrowException()
         {
-            Assert.Fail("This is a sample test that should fail.");
+            Checkout checkout = new Checkout(PriceConstants.ItemPrices);
+
+            Assert.Throws<StringIsNullEmptyOrWhiteSpaceException>(() => checkout.Scan(null));
         }
+
         [Fact]
         public void ScanningAnEmptyStringShouldThrowException()
         {
-            Assert.Fail("This is a sample test that should fail.");
+            Checkout checkout = new Checkout(PriceConstants.ItemPrices);
+
+            Assert.Throws<StringIsNullEmptyOrWhiteSpaceException>(() => checkout.Scan(string.Empty));
         }
 
         [Fact]
         public void ScanningAWhiteSpaceStringShouldThrowException()
         {
-            Assert.Fail("This is a sample test that should fail.");
+            Checkout checkout = new Checkout(PriceConstants.ItemPrices);
+
+            Assert.Throws<StringIsNullEmptyOrWhiteSpaceException>(() => checkout.Scan("  "));
         }
     }
 }

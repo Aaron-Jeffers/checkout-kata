@@ -1,8 +1,8 @@
 ﻿namespace Checkout_Kata.lib.Exceptions
 {
-    internal class ItemNotFoundException : Exception
+    public class ItemNotFoundException : Exception
     {
-        internal ItemNotFoundException(string message) : base($"Item with SKU '{message}' not found in price list.")
+        public ItemNotFoundException(string message) : base($"Item with SKU '{message}' not found in price list.")
         { }
         
         
