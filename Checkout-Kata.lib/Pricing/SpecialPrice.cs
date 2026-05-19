@@ -9,5 +9,7 @@
         }
         public int Quantity { get; }
         public int Price { get; }
+
+        public bool HasValue => Quantity > 0 && Price > 0;
     }
 }

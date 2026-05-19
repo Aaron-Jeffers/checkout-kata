@@ -13,5 +13,17 @@
         public int UnitPrice { get; }
 
         public SpecialPrice? SpecialPrice { get; }
+        public bool HasSpecialPrice => SpecialPrice != null && SpecialPrice.HasValue;
+
+        public int CalculatePrice(int count)
+        {
+            if (HasSpecialPrice && count >= SpecialPrice.Quantity)
+            {
+                int specialPriceCount = count / SpecialPrice.Quantity;
+                int remainingItems = count % SpecialPrice.Quantity;
+                return (specialPriceCount * SpecialPrice.Price) + (remainingItems * UnitPrice);
+            }
+            return count * UnitPrice;
+        }
     }
 }
