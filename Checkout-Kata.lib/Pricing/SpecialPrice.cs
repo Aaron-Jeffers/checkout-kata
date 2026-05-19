@@ -1,6 +1,6 @@
 ﻿namespace Checkout_Kata.lib.Pricing
 {
-    internal class SpecialPrice
+    public class SpecialPrice
     {
         public SpecialPrice(int quantity, int price) 
         {
