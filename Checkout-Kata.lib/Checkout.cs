@@ -43,17 +43,7 @@ namespace Checkout_Kata.lib
 
         public int GetTotalPrice()
         {
-            int price = 0;
-
-            foreach (var kvp in ScannedItems)
-            {
-                var itemPrice = kvp.Key;
-                var count = kvp.Value;
-
-                price += itemPrice.CalculatePrice(count);
-            }
-
-            return price;
+            return ScannedItems.Sum(item => item.Key.CalculatePrice(item.Value));
         }
     }
 }
