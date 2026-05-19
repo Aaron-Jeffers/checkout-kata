@@ -1,4 +1,5 @@
-﻿using Checkout_Kata.lib.Pricing;
+﻿using Checkout_Kata.lib.Exceptions;
+using Checkout_Kata.lib.Pricing;
 
 namespace Checkout_Kata.lib
 {
@@ -12,7 +13,14 @@ namespace Checkout_Kata.lib
         }
         public void Scan(string item)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrWhiteSpace(item))
+            {
+                throw new StringIsNullEmptyOrWhiteSpaceException();
+            }
+            if (!ItemPrices.Any(i => i.SKU == item))
+            {
+                throw new ItemNotFoundException(item);
+            }
         }
 
         public int GetTotalPrice()
