@@ -15,6 +15,11 @@
         public SpecialPrice? SpecialPrice { get; }
         public bool HasSpecialPrice => SpecialPrice != null && SpecialPrice.HasValue;
 
+        /// <summary>
+        /// Returns the total price for the given quantity of items, applying the special price if applicable.
+        /// </summary>
+        /// <param name="count">Number of items to calculate price for</param>
+        /// <returns></returns>
         public int CalculatePrice(int count)
         {
             if (HasSpecialPrice && count >= SpecialPrice.Quantity)

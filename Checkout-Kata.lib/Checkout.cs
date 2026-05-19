@@ -22,6 +22,12 @@ namespace Checkout_Kata.lib
             ScannedItems = new Dictionary<ItemPrice, int>();
         }
 
+        /// <summary>
+        /// Scans an item by its SKU and adds it to the checkout. Validates that the item is not null, empty, or whitespace, and that it exists in the price list. If the item is valid, it updates the count of scanned items for that SKU.
+        /// </summary>
+        /// <param name="item"></param>
+        /// <exception cref="StringIsNullEmptyOrWhiteSpaceException"></exception>
+        /// <exception cref="ItemNotFoundException"></exception>
         public void Scan(string item)
         {
             if (string.IsNullOrWhiteSpace(item))
@@ -41,6 +47,10 @@ namespace Checkout_Kata.lib
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>The total price for the sum of each scanned SKU with special pricing applied as appropriate</returns>
         public int GetTotalPrice()
         {
             return ScannedItems.Sum(item => item.Key.CalculatePrice(item.Value));
