@@ -6,10 +6,12 @@ namespace Checkout_Kata.lib
     public class Checkout : ICheckout
     {
         private List<ItemPrice> ItemPrices { get; }
+        private List<string> ScannedItems { get; set; } = new List<string>();
 
         public Checkout(List<ItemPrice> itemPrices)
         {
             ItemPrices = itemPrices;
+            ScannedItems = new List<string>();
         }
         public void Scan(string item)
         {
@@ -21,6 +23,8 @@ namespace Checkout_Kata.lib
             {
                 throw new ItemNotFoundException(item);
             }
+
+            ScannedItems.Add(item);
         }
 
         public int GetTotalPrice()
