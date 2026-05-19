@@ -10,6 +10,14 @@ namespace Checkout_Kata.lib
 
         public Checkout(List<ItemPrice> itemPrices)
         {
+            if (itemPrices == null)
+            {
+                throw new ArgumentNullException(nameof(List<ItemPrice>));
+            }
+            if (!itemPrices.Any())
+            {
+                throw new PriceListIsEmptyException();
+            }
             ItemPrices = itemPrices;
             ScannedItems = new List<string>();
         }
